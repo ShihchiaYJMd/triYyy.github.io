@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>你的名字 | Home</title>
+    <meta
+      name="description"
+      content="一个彩色水粉风格的个人主页，展示介绍、项目、联系方式。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="paint-bg" aria-hidden="true">
+      <span class="blob blob-a"></span>
+      <span class="blob blob-b"></span>
+      <span class="blob blob-c"></span>
+      <span class="blob blob-d"></span>
+    </div>
+
+    <main class="container">
+      <header class="hero fade-up">
+        <p class="tag">HELLO · WELCOME</p>
+        <h1>你好，我是你的名字</h1>
+        <p class="intro">
+          我在做产品、内容和一些有趣的小项目。这个主页是轻松明亮的水粉风，记录我最近在做什么。
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">看项目</a>
+          <a class="btn btn-ghost" href="#contact">联系我</a>
+        </div>
+      </header>
+
+      <section id="projects" class="card fade-up delay-1">
+        <h2>最近项目</h2>
+        <div class="grid">
+          <article>
+            <h3>Project A</h3>
+            <p>一句话介绍：你做了什么、为谁做、有什么结果。</p>
+            <a href="#" aria-label="打开 Project A">查看详情 →</a>
+          </article>
+          <article>
+            <h3>Project B</h3>
+            <p>一句话介绍：可放 GitHub、文章或演示链接。</p>
+            <a href="#" aria-label="打开 Project B">查看详情 →</a>
+          </article>
+          <article>
+            <h3>Project C</h3>
+            <p>一句话介绍：强调你的方法、风格或能力。</p>
+            <a href="#" aria-label="打开 Project C">查看详情 →</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="card fade-up delay-2">
+        <h2>关于我</h2>
+        <p>
+          可写你的身份、经历和关注方向。建议用 3-5 句：你是谁、做什么、偏好什么合作、目前在探索什么。
+        </p>
+      </section>
+
+      <section id="contact" class="card fade-up delay-3">
+        <h2>联系</h2>
+        <ul>
+          <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
+          <li>GitHub: <a href="https://github.com/yourname">@yourname</a></li>
+          <li>Notion: <a href="#">你的公开页面</a></li>
+        </ul>
+      </section>
+
+      <footer class="footer fade-up delay-3">
+        <p>© <span id="year"></span> 你的名字 · Made with watercolor vibes.</p>
+      </footer>
+    </main>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
