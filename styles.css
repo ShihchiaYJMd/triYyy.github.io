@@ -1,3 +1,35 @@
+/* 霞鹜文楷（OFL），只含页面用到的汉字，见 tools/subset-fonts.py；拉丁字符交给系统字体 */
+@font-face {
+  font-family: "WenKai";
+  src: url("./assets/fonts/wenkai-regular.woff2") format("woff2");
+  font-weight: 100 450;
+  font-display: swap;
+  unicode-range: U+2E80-9FFF, U+F900-FAFF, U+FF00-FFEF, U+00B7, U+2014, U+2018-2019, U+201C-201D, U+2026;
+}
+
+@font-face {
+  font-family: "WenKai";
+  src: url("./assets/fonts/wenkai-medium.woff2") format("woff2");
+  font-weight: 451 900;
+  font-display: swap;
+  unicode-range: U+2E80-9FFF, U+F900-FAFF, U+FF00-FFEF, U+00B7, U+2014, U+2018-2019, U+201C-201D, U+2026;
+}
+
+/* 方正苏轼行书 / 方正颜真卿楷书，同样只含页面用字 */
+@font-face {
+  font-family: "SuShi";
+  src: url("./assets/fonts/sushi-xingshu.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+2E80-9FFF, U+F900-FAFF, U+FF00-FFEF, U+00B7, U+2014, U+2018-2019, U+201C-201D, U+2026;
+}
+
+@font-face {
+  font-family: "YanKai";
+  src: url("./assets/fonts/yan-kaishu.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+2E80-9FFF, U+F900-FAFF, U+FF00-FFEF, U+00B7, U+2014, U+2018-2019, U+201C-201D, U+2026;
+}
+
 :root {
   /* 雪衣 · 黛蓝 · 梅红 · 冰蓝 · 云纹金 */
   --paper: #f5f7f9;
@@ -18,9 +50,13 @@
   --gold: #c4a062;
   --on-accent: #fdf7f9;
 
-  --font-brush: "Ma Shan Zheng", "STKaiti", "KaiTi", serif;
-  --font-serif: "Noto Serif SC", "Songti SC", "STSong", serif;
-  --font-latin: "Cormorant Garamond", Georgia, serif;
+  /* 行书：方正苏轼行书；楷书：方正颜真卿楷书 */
+  --font-xing: "SuShi", var(--font-en), "Kaiti SC", "STKaiti", "KaiTi", serif;
+  --font-brush: "YanKai", var(--font-en), "Kaiti SC", "STKaiti", "KaiTi", serif;
+  /* 正文：中文楷体 + 英文 San Francisco */
+  --font-en: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", sans-serif;
+  --font-body: "WenKai", var(--font-en), "Kaiti SC", "STKaiti", "KaiTi", serif;
+  --font-latin: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
 }
 
 *,
@@ -40,7 +76,7 @@ body {
 }
 
 body {
-  font-family: var(--font-serif);
+  font-family: var(--font-body);
   color: var(--ink);
   background: var(--paper);
   min-height: 100vh;
@@ -180,7 +216,7 @@ a {
 
 .brush-title {
   margin: 0;
-  font-family: var(--font-brush);
+  font-family: var(--font-xing);
   font-weight: 400;
   font-size: clamp(2.5rem, 7.4vw, 5.2rem);
   line-height: 1.12;
@@ -238,9 +274,7 @@ a {
 
 .intro strong {
   font-family: var(--font-latin);
-  font-size: 1.2em;
-  font-style: italic;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .actions {
@@ -260,7 +294,7 @@ a {
   display: inline-flex;
   align-items: center;
   padding: 11px 26px;
-  font-family: var(--font-serif);
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.98rem;
   letter-spacing: 0.12em;
@@ -321,7 +355,7 @@ a {
 .vertical {
   margin: 0;
   writing-mode: vertical-rl;
-  font-family: var(--font-brush);
+  font-family: var(--font-xing);
   font-size: 2rem;
   letter-spacing: 0.32em;
   color: var(--ink-2);
@@ -332,6 +366,25 @@ a {
   font-size: 0.9rem;
   letter-spacing: 0.1em;
   color: var(--ink-soft);
+}
+
+.seal-group {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.vertical-sm {
+  font-family: var(--font-brush);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  letter-spacing: 0.14em;
+  color: var(--ink-2);
+}
+
+.vertical-sm span {
+  font-size: 0.8rem;
 }
 
 .seal {
