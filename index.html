@@ -3,84 +3,460 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>你的名字 | Home</title>
+    <title>Chuck</title>
     <meta
       name="description"
-      content="一个彩色水粉风格的个人主页，展示介绍、项目、联系方式。"
+      content="Chuck 的个人主页：足彩分析 Agent、MediaSpace 视频下载器、课栈小鹅通下载器。"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect x=%274%27 y=%274%27 width=%2756%27 height=%2756%27 rx=%276%27 fill=%27%23b03a2e%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-size=%2736%27 text-anchor=%27middle%27 fill=%27%23f7e9df%27 font-family=%27serif%27%3E墨%3C/text%3E%3C/svg%3E" />
   </head>
   <body>
-    <div class="paint-bg" aria-hidden="true">
-      <span class="blob blob-a"></span>
-      <span class="blob blob-b"></span>
-      <span class="blob blob-c"></span>
-      <span class="blob blob-d"></span>
+    <!-- 共用 SVG 滤镜：墨迹晕染 / 印章残边 -->
+    <svg class="sr-defs" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="bleed" x="-30%" y="-30%" width="160%" height="160%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="7" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="38" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+          <feGaussianBlur in="displaced" stdDeviation="5" />
+        </filter>
+        <filter id="rough" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="grain" />
+          <feDisplacementMap in="SourceGraphic" in2="grain" scale="3" />
+        </filter>
+        <filter id="ridge" x="-5%" y="-20%" width="110%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.006 0.04" numOctaves="4" seed="11" result="t" />
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="26" />
+          <feGaussianBlur stdDeviation="1.4" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- 背景：宣纸、朱日、远山 -->
+    <div class="scene" aria-hidden="true">
+      <span class="wash wash-a"></span>
+      <span class="wash wash-b"></span>
+      <span class="sun"></span>
+      <svg class="mountains" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="mt-far" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7f9ab4" stop-opacity="0.3" />
+            <stop offset="0.55" stop-color="#7f9ab4" stop-opacity="0.08" />
+            <stop offset="1" stop-color="#7f9ab4" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient id="mt-mid" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#58728f" stop-opacity="0.36" />
+            <stop offset="0.5" stop-color="#58728f" stop-opacity="0.1" />
+            <stop offset="1" stop-color="#58728f" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient id="mt-near" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#34475e" stop-opacity="0.42" />
+            <stop offset="0.7" stop-color="#34475e" stop-opacity="0.12" />
+            <stop offset="1" stop-color="#34475e" stop-opacity="0.03" />
+          </linearGradient>
+        </defs>
+        <g filter="url(#ridge)">
+          <path class="mt mt-far" fill="url(#mt-far)" d="M0 210 C 120 170 200 110 300 140 S 470 80 560 120 S 720 200 820 150 S 1000 50 1100 110 S 1300 180 1440 130 L1440 360 L0 360Z" />
+          <path class="mt mt-mid" fill="url(#mt-mid)" d="M0 260 C 90 230 160 170 260 205 S 400 250 480 195 S 600 110 700 185 S 860 260 960 220 S 1120 140 1220 205 S 1380 240 1440 215 L1440 360 L0 360Z" />
+          <path class="mt mt-near" fill="url(#mt-near)" d="M0 312 C 140 282 240 262 360 292 S 600 316 720 286 S 980 246 1100 290 S 1340 318 1440 298 L1440 360 L0 360Z" />
+        </g>
+      </svg>
     </div>
 
+    <svg class="plum" viewBox="0 0 520 300" aria-hidden="true">
+      <defs>
+        <g id="blossom">
+          <circle cx="0" cy="-6.5" r="5.6" />
+          <circle cx="6.2" cy="-2" r="5.6" />
+          <circle cx="3.8" cy="5.3" r="5.6" />
+          <circle cx="-3.8" cy="5.3" r="5.6" />
+          <circle cx="-6.2" cy="-2" r="5.6" />
+          <circle class="stamen" cx="0" cy="0" r="2.2" />
+        </g>
+      </defs>
+      <g class="plum-branch" filter="url(#rough)">
+        <path d="M-20 30 C 60 50 110 40 170 78 S 280 120 340 108 S 440 70 500 86" stroke-width="7" />
+        <path d="M170 78 C 190 120 215 150 222 200 S 240 260 262 282" stroke-width="4.5" />
+        <path d="M340 108 C 352 136 380 150 404 176" stroke-width="3" />
+        <path d="M96 48 C 110 22 132 10 150 2" stroke-width="2.6" />
+        <path d="M260 112 C 276 88 300 78 318 60" stroke-width="2.2" />
+        <path d="M222 200 C 196 214 180 232 170 254" stroke-width="2" />
+      </g>
+      <g class="plum-flowers">
+        <use href="#blossom" transform="translate(150 6) scale(1.1)" />
+        <use href="#blossom" transform="translate(120 56) scale(0.9)" />
+        <use href="#blossom" transform="translate(196 92) scale(1.3)" />
+        <use href="#blossom" transform="translate(318 58) scale(1)" />
+        <use href="#blossom" transform="translate(286 118) scale(0.8)" />
+        <use href="#blossom" transform="translate(404 176) scale(1.15)" />
+        <use href="#blossom" transform="translate(228 168) scale(0.95)" />
+        <use href="#blossom" transform="translate(170 254) scale(1.05)" />
+        <use href="#blossom" transform="translate(262 282) scale(0.85)" />
+        <use href="#blossom" transform="translate(470 80) scale(0.9)" />
+        <circle class="bud" cx="60" cy="44" r="3.4" />
+        <circle class="bud" cx="246" cy="236" r="3" />
+        <circle class="bud" cx="372" cy="146" r="3.2" />
+        <circle class="bud" cx="420" cy="84" r="2.8" />
+      </g>
+    </svg>
+
     <main class="container">
-      <header class="hero fade-up">
-        <p class="tag">HELLO · WELCOME</p>
-        <h1>你好，我是你的名字</h1>
-        <p class="intro">
-          我在做产品、内容和一些有趣的小项目。这个主页是轻松明亮的水粉风，记录我最近在做什么。
-        </p>
-        <div class="actions">
-          <a class="btn btn-primary" href="#projects">看项目</a>
-          <a class="btn btn-ghost" href="#contact">联系我</a>
+      <!-- 首屏 -->
+      <header class="hero">
+        <div class="hero-text">
+          <p class="kicker">CHUCK · PERSONAL PAGE</p>
+          <h1 class="brush-title" aria-label="天涯远不远？人就在天涯，天涯怎么会远？">
+            <span class="line" aria-hidden="true"
+              ><i style="--i: 0">天</i><i style="--i: 1">涯</i><i style="--i: 2">远</i><i style="--i: 3">不</i><i style="--i: 4">远</i><i style="--i: 5">？</i></span
+            >
+            <span class="line" aria-hidden="true"
+              ><i style="--i: 6">人</i><i style="--i: 7">就</i><i style="--i: 8">在</i><i style="--i: 9">天</i><i style="--i: 10">涯</i><i style="--i: 11">，</i></span
+            >
+            <span class="line" aria-hidden="true"
+              ><i style="--i: 12">天</i><i style="--i: 13">涯</i><i style="--i: 14">怎</i><i style="--i: 15">么</i><i style="--i: 16">会</i><i style="--i: 17">远</i><i style="--i: 18">？</i></span
+            >
+          </h1>
+          <p class="quote-src">— 古龙《天涯·明月·刀》</p>
+          <p class="intro">
+            你好，我是 <strong>Chuck</strong>。喜欢把重复的事交给代码，把不确定的事交给模型——
+            做过一个足球预测 Agent，也写了几个顺手的下载工具。
+          </p>
+          <div class="actions">
+            <a class="btn btn-ink" href="#projects">看作品</a>
+            <a class="btn btn-line" href="#contact">联系我</a>
+          </div>
         </div>
+
+        <aside class="hero-side" aria-hidden="true">
+          <p class="vertical">他的心就是明月<span>— 古龙</span></p>
+          <div class="seal"><span>知</span><span>行</span><span>合</span><span>一</span></div>
+        </aside>
       </header>
 
-      <section id="projects" class="card fade-up delay-1">
-        <h2>最近项目</h2>
-        <div class="grid">
-          <article>
-            <h3>Project A</h3>
-            <p>一句话介绍：你做了什么、为谁做、有什么结果。</p>
-            <a href="#" aria-label="打开 Project A">查看详情 →</a>
+      <!-- 壹 · 作品 -->
+      <section id="projects" class="section reveal">
+        <h2 class="section-title">
+          <span class="num">壹</span><span class="zh">近作</span><span class="en">Works</span>
+        </h2>
+
+        <div class="works">
+          <article class="work work-feature" data-mark="球">
+            <button class="work-hit" type="button" data-open="dlg-matchedge" aria-label="查看 MatchEdge 足彩分析 Agent 详情"></button>
+            <div class="work-body">
+              <p class="work-tag">Agent · 预测模型</p>
+              <h3>MatchEdge · 足彩分析 Agent</h3>
+              <p>
+                对话式 Agent 按「八步法」逐场研判，背后是一套泊松回归 + 市场共识修正的预测模型，
+                并以澳门盘口深浅变化作为辅助信号。
+              </p>
+              <ul class="chips">
+                <li>泊松回归</li>
+                <li>七家赔率去抽水</li>
+                <li>岭回归修正</li>
+                <li>LLM Agent</li>
+              </ul>
+              <span class="work-more">展开画卷 →</span>
+            </div>
+            <div class="work-thumbs" aria-hidden="true">
+              <img src="./assets/matchedge-1-assistant.png" alt="" loading="lazy" />
+              <img src="./assets/matchedge-3-dashboard.png" alt="" loading="lazy" />
+              <img src="./assets/matchedge-2-analysis.png" alt="" loading="lazy" />
+            </div>
           </article>
-          <article>
-            <h3>Project B</h3>
-            <p>一句话介绍：可放 GitHub、文章或演示链接。</p>
-            <a href="#" aria-label="打开 Project B">查看详情 →</a>
+
+          <article class="work" data-mark="影">
+            <button class="work-hit" type="button" data-open="dlg-video" aria-label="查看 MediaSpace 视频下载器详情"></button>
+            <div class="work-body">
+              <p class="work-tag">Python · 自动化</p>
+              <h3>UIUC MediaSpace 视频下载器</h3>
+              <p>无头浏览器批量抓取频道视频，嗅探真实流地址后交给 yt-dlp 下载。</p>
+              <span class="work-more">简介与仓库 →</span>
+            </div>
           </article>
-          <article>
-            <h3>Project C</h3>
-            <p>一句话介绍：强调你的方法、风格或能力。</p>
-            <a href="#" aria-label="打开 Project C">查看详情 →</a>
+
+          <article class="work" data-mark="课">
+            <button class="work-hit" type="button" data-open="dlg-kezhan" aria-label="查看课栈小鹅通下载器详情"></button>
+            <div class="work-body">
+              <p class="work-tag">桌面工具</p>
+              <h3>课栈 · 小鹅通下载器</h3>
+              <p>扫码登录、解析课程目录、批量加入队列，把已购课程离线备份到本地。</p>
+              <span class="work-more">截图与获取方式 →</span>
+            </div>
           </article>
         </div>
       </section>
 
-      <section id="about" class="card fade-up delay-2">
-        <h2>关于我</h2>
-        <p>
-          可写你的身份、经历和关注方向。建议用 3-5 句：你是谁、做什么、偏好什么合作、目前在探索什么。
-        </p>
+      <div class="meander" aria-hidden="true"></div>
+
+      <!-- 贰 · 关于 -->
+      <section id="about" class="section reveal">
+        <h2 class="section-title">
+          <span class="num">贰</span><span class="zh">关于</span><span class="en">About</span>
+        </h2>
+        <div class="about">
+          <p>
+            我关心两件事：一是把数据变成判断——用统计模型和 LLM Agent 处理充满噪声的问题；
+            二是把繁琐流程变成一键工具。这里会持续记录我正在做的东西。
+          </p>
+          <ul class="chips chips-lg">
+            <li>Python</li>
+            <li>统计建模</li>
+            <li>LLM Agent</li>
+            <li>爬虫与自动化</li>
+            <li>桌面工具</li>
+          </ul>
+        </div>
       </section>
 
-      <section id="contact" class="card fade-up delay-3">
-        <h2>联系</h2>
-        <ul>
-          <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
-          <li>GitHub: <a href="https://github.com/yourname">@yourname</a></li>
-          <li>Notion: <a href="#">你的公开页面</a></li>
+      <div class="meander" aria-hidden="true"></div>
+
+      <!-- 叁 · 联系 -->
+      <section id="contact" class="section reveal">
+        <h2 class="section-title">
+          <span class="num">叁</span><span class="zh">联系</span><span class="en">Contact</span>
+        </h2>
+        <ul class="contact">
+          <li>
+            <span class="c-seal">邮</span>
+            <span class="c-label">Email</span>
+            <a href="mailto:shihchia27@gmail.com">shihchia27@gmail.com</a>
+          </li>
+          <li>
+            <span class="c-seal">码</span>
+            <span class="c-label">GitHub</span>
+            <a href="https://github.com/ShihchiaYJMd" target="_blank" rel="noopener">@ShihchiaYJMd</a>
+          </li>
+          <li>
+            <span class="c-seal">记</span>
+            <span class="c-label">Notion</span>
+            <a href="./404.html">筹备中</a>
+          </li>
         </ul>
       </section>
 
-      <footer class="footer fade-up delay-3">
-        <p>© <span id="year"></span> 你的名字 · Made with watercolor vibes.</p>
+      <footer class="footer">
+        <p>© <span id="year"></span> Chuck · 水墨为衣，代码为骨</p>
       </footer>
     </main>
 
+    <!-- 画卷：MatchEdge -->
+    <dialog id="dlg-matchedge" class="scroll" aria-labelledby="t-matchedge">
+      <div class="scroll-inner">
+        <button class="scroll-close" type="button" data-close aria-label="关闭">×</button>
+        <p class="work-tag">Agent · 预测模型</p>
+        <h3 id="t-matchedge">MatchEdge · 足彩分析 Agent</h3>
+        <p class="lead">
+          核心是 <strong>Agent + 预测模型</strong>：Agent 负责理解中文提问、联网查伤停、按「八步法」逐场研判；
+          预测模型负责给出每场主胜 / 平局 / 客胜的概率，并与市场概率并排呈现在预测看板上。
+        </p>
+
+        <ol class="steps">
+          <li>
+            <span class="step-n">一</span>
+            <div><strong>期望进球</strong>用泊松回归估计双方的期望进球。</div>
+          </li>
+          <li>
+            <span class="step-n">二</span>
+            <div>
+              <strong>市场共识</strong>将七家机构赔率去除抽水（庄家利润）后取中位数，得到市场共识概率，
+              再用岭回归对共识做修正。
+            </div>
+          </li>
+          <li>
+            <span class="step-n">三</span>
+            <div><strong>辅助信号</strong>融入澳门盘口深浅变化，作为辅助信号。</div>
+          </li>
+        </ol>
+
+        <div class="gallery">
+          <figure>
+            <button type="button" data-zoom="./assets/matchedge-1-assistant.png" aria-label="放大：八步助手首页">
+              <img src="./assets/matchedge-1-assistant.png" alt="MatchEdge 八步助手首页" loading="lazy" />
+            </button>
+            <figcaption><span>一</span>八步助手 · 整期 / 单场 / 联网查伤停</figcaption>
+          </figure>
+          <figure>
+            <button type="button" data-zoom="./assets/matchedge-2-analysis.png" aria-label="放大：逐场八步分析">
+              <img src="./assets/matchedge-2-analysis.png" alt="MatchEdge 逐场八步分析示例" loading="lazy" />
+            </button>
+            <figcaption><span>二</span>逐场研判 · 实力、主客场、近况、亚盘……</figcaption>
+          </figure>
+          <figure>
+            <button type="button" data-zoom="./assets/matchedge-3-dashboard.png" aria-label="放大：今日预测看板">
+              <img src="./assets/matchedge-3-dashboard.png" alt="MatchEdge 今日预测看板" loading="lazy" />
+            </button>
+            <figcaption><span>三</span>预测看板 · 模型概率 vs 市场概率</figcaption>
+          </figure>
+        </div>
+
+        <p class="note">本项目仅供学习与研究交流，预测结果不构成任何投注建议。</p>
+      </div>
+    </dialog>
+
+    <!-- 画卷：视频下载器 -->
+    <dialog id="dlg-video" class="scroll" aria-labelledby="t-video">
+      <div class="scroll-inner">
+        <button class="scroll-close" type="button" data-close aria-label="关闭">×</button>
+        <p class="work-tag">Python · 自动化</p>
+        <h3 id="t-video">UIUC MediaSpace 视频下载器</h3>
+        <p class="lead">
+          一个面向学校 MediaSpace（Kaltura）平台的无头批量下载脚本：给它一个频道地址，
+          它会把频道里的课程视频逐个找出来并下载到本地。
+        </p>
+        <ol class="steps">
+          <li>
+            <span class="step-n">一</span>
+            <div><strong>扫描频道</strong>Selenium 驱动无头 Chrome 打开频道页，筛出所有有效的视频页链接。</div>
+          </li>
+          <li>
+            <span class="step-n">二</span>
+            <div><strong>嗅探流地址</strong>模拟点击播放，从浏览器性能日志里抓取真实的视频流地址。</div>
+          </li>
+          <li>
+            <span class="step-n">三</span>
+            <div><strong>下载落盘</strong>交给 yt-dlp 下载并按视频标题命名保存。</div>
+          </li>
+        </ol>
+        <p class="lead small">
+          小彩蛋：仓库里的目标站点配置用 AES-128 加密，需要先解开 README 里的小谜题才能使用。
+        </p>
+        <div class="actions">
+          <a class="btn btn-ink" href="https://github.com/ShihchiaYJMd/Video-Downloader" target="_blank" rel="noopener">前往 GitHub 仓库 →</a>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- 画卷：课栈 -->
+    <dialog id="dlg-kezhan" class="scroll" aria-labelledby="t-kezhan">
+      <div class="scroll-inner">
+        <button class="scroll-close" type="button" data-close aria-label="关闭">×</button>
+        <p class="work-tag">桌面工具</p>
+        <h3 id="t-kezhan">课栈 · 小鹅通下载器</h3>
+        <p class="lead">
+          把已购买的小鹅通课程离线备份到本地的桌面工具：扫码登录后粘贴课程链接，自动解析出完整目录，
+          勾选课时加入下载队列，支持暂停、清理与生成播放列表。
+        </p>
+        <figure class="single">
+          <button type="button" data-zoom="./assets/kezhan-downloader.png" aria-label="放大：课栈应用截图">
+            <img src="./assets/kezhan-downloader.png" alt="课栈 · 课程下载工作台应用截图" loading="lazy" />
+          </button>
+          <figcaption>课栈 · 课程下载工作台</figcaption>
+        </figure>
+        <div class="contact-card">
+          <span class="c-seal">询</span>
+          <div>
+            <p>使用请联系闲鱼：<strong>超宁集团</strong></p>
+            <p class="muted">
+              会员名：<code id="xianyu-id">tb317957996</code>
+              <button class="copy" type="button" data-copy="tb317957996">复制</button>
+            </p>
+          </div>
+          <a class="btn btn-ink xianyu-link" href="https://m.tb.cn/h.jf7fATr?tk=7jmCTzv2JzD" target="_blank" rel="noopener">去闲鱼看看 →</a>
+        </div>
+        <p class="note">仅供已购课程的个人离线备份。</p>
+      </div>
+    </dialog>
+
+    <!-- 看图 -->
+    <dialog id="lightbox" class="lightbox" aria-label="图片预览">
+      <button class="scroll-close" type="button" data-close aria-label="关闭">×</button>
+      <img alt="" />
+    </dialog>
+
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // 滚动时墨迹渗开
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // 卡片悬停：墨从指尖晕开
+      document.querySelectorAll(".work").forEach((card) => {
+        card.addEventListener("pointermove", (e) => {
+          const r = card.getBoundingClientRect();
+          card.style.setProperty("--x", `${e.clientX - r.left}px`);
+          card.style.setProperty("--y", `${e.clientY - r.top}px`);
+        });
+      });
+
+      // 画卷开合
+      const lightbox = document.getElementById("lightbox");
+      document.querySelectorAll("[data-open]").forEach((btn) => {
+        btn.addEventListener("click", () => document.getElementById(btn.dataset.open).showModal());
+      });
+      document.querySelectorAll("dialog").forEach((dlg) => {
+        dlg.addEventListener("click", (e) => {
+          if (e.target === dlg || e.target.closest("[data-close]")) dlg.close();
+        });
+      });
+      document.querySelectorAll("[data-zoom]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const img = lightbox.querySelector("img");
+          img.src = btn.dataset.zoom;
+          img.alt = btn.querySelector("img").alt;
+          lightbox.showModal();
+        });
+      });
+
+      // 复制闲鱼会员名
+      document.querySelectorAll("[data-copy]").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(btn.dataset.copy);
+            btn.textContent = "已复制";
+          } catch {
+            btn.textContent = "请手动复制";
+          }
+          setTimeout(() => (btn.textContent = "复制"), 1600);
+        });
+      });
+
+      // 梅瓣与飞雪
+      if (!reduceMotion) {
+        const sky = document.querySelector(".scene");
+        const tones = ["plum", "plum", "ice", "snow"];
+        for (let n = 0; n < 16; n++) {
+          const p = document.createElement("span");
+          p.className = `petal petal-${tones[n % tones.length]}`;
+          p.style.left = `${Math.random() * 100}%`;
+          p.style.setProperty("--size", `${6 + Math.random() * 7}px`);
+          p.style.setProperty("--sway", `${(Math.random() * 2 - 1) * 120}px`);
+          p.style.animationDuration = `${14 + Math.random() * 14}s`;
+          p.style.animationDelay = `${-Math.random() * 28}s`;
+          sky.appendChild(p);
+        }
+      }
+
+      // 点击落墨
+      if (!reduceMotion) {
+        document.addEventListener("pointerdown", (e) => {
+          if (e.target.closest("dialog")) return;
+          const drop = document.createElement("span");
+          drop.className = "ink-drop";
+          drop.style.left = `${e.clientX}px`;
+          drop.style.top = `${e.clientY}px`;
+          document.body.appendChild(drop);
+          drop.addEventListener("animationend", () => drop.remove());
+        });
+      }
     </script>
   </body>
 </html>

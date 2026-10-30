@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 · 此页尚在研墨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect x=%274%27 y=%274%27 width=%2756%27 height=%2756%27 rx=%276%27 fill=%27%23b03a2e%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-size=%2736%27 text-anchor=%27middle%27 fill=%27%23f7e9df%27 font-family=%27serif%27%3E墨%3C/text%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <svg class="sr-defs" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="bleed" x="-30%" y="-30%" width="160%" height="160%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="7" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="38" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+          <feGaussianBlur in="displaced" stdDeviation="5" />
+        </filter>
+        <filter id="rough" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="grain" />
+          <feDisplacementMap in="SourceGraphic" in2="grain" scale="3" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="scene" aria-hidden="true">
+      <span class="wash wash-a"></span>
+      <span class="wash wash-b"></span>
+      <span class="sun"></span>
+    </div>
+
+    <main class="lost">
+      <div>
+        <h1 class="lost-mark">4<span>0</span>4</h1>
+        <p>此页尚在研墨中——Notion 页面还在筹备，敬请期待。</p>
+        <div class="actions">
+          <a class="btn btn-ink" href="./index.html">回到首页</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

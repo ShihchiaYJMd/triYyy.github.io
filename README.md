@@ -1,9 +1,16 @@
-# 彩色水粉风个人主页
+# Chuck 的个人主页 · 水墨风
 
-这个目录已经是一个可直接部署的静态主页：
+纯静态页面，无构建步骤，可直接部署：
 
-- `index.html`
-- `styles.css`
+- `index.html`：主页（首屏、近作、关于、联系）+ 三个项目的「画卷」弹窗
+- `styles.css`：全部样式；顶部 `:root` 是配色变量（宣纸 / 墨 / 朱砂 / 黛青）
+- `404.html`：Notion 链接暂时指向这里；GitHub Pages 也会把它当作站点 404
+- `assets/`：项目截图
+  - `matchedge-1-assistant.png` / `matchedge-2-analysis.png` / `matchedge-3-dashboard.png`：足彩分析 Agent
+  - `kezhan-downloader.png`：课栈 · 小鹅通下载器
+
+视觉效果全部用 CSS + 内联 SVG 滤镜实现（`#bleed` 墨迹晕染、`#rough` 印章残边、`#ridge` 远山轮廓），
+字体来自 Google Fonts（Ma Shan Zheng / Noto Serif SC / Cormorant Garamond）。
 
 ## 本地预览
 
@@ -43,8 +50,9 @@ git push -u origin main
    - [Potion](https://potion.so)
 4. 这两个工具可把 Notion 页面套上更好看的主题和自定义域名。
 
-## 你需要改的内容
+## 常改的地方
 
-- `index.html` 里的名字、文案、链接（Email/GitHub/Notion）。
-- 项目区 `Project A/B/C` 改成你的真实项目。
-- 想换配色可在 `styles.css` 顶部 `:root` 调整颜色变量。
+- Notion 页面上线后：把 `index.html` 联系区里的 `./404.html` 换成真实链接。
+- 新增项目：复制 `.works` 里的一个 `<article class="work">`，再复制一个对应的 `<dialog class="scroll">`，
+  两者用 `data-open="dlg-xxx"` / `id="dlg-xxx"` 关联。
+- 换配色：改 `styles.css` 顶部 `:root` 变量。
