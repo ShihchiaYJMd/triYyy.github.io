@@ -1,7 +1,7 @@
 /* 霞鹜文楷（OFL），只含页面用到的汉字，见 tools/subset-fonts.py；拉丁字符交给系统字体 */
 @font-face {
   font-family: "WenKai";
-  src: url("./assets/fonts/wenkai-regular.woff2") format("woff2");
+  src: url("./assets/fonts/wenkai-regular.woff2?v=6") format("woff2");
   font-weight: 100 450;
   font-display: swap;
   unicode-range: U+2E80-9FFF, U+F900-FAFF, U+FF00-FFEF, U+00B7, U+2014, U+2018-2019, U+201C-201D, U+2026;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "WenKai";
-  src: url("./assets/fonts/wenkai-medium.woff2") format("woff2");
+  src: url("./assets/fonts/wenkai-medium.woff2?v=6") format("woff2");
   font-weight: 451 900;
   font-display: swap;
   unicode-range: U+2E80-9FFF, U+F900-FAFF, U+FF00-FFEF, U+00B7, U+2014, U+2018-2019, U+201C-201D, U+2026;
@@ -18,14 +18,14 @@
 /* 方正苏轼行书 / 方正颜真卿楷书，同样只含页面用字 */
 @font-face {
   font-family: "SuShi";
-  src: url("./assets/fonts/sushi-xingshu.woff2") format("woff2");
+  src: url("./assets/fonts/sushi-xingshu.woff2?v=6") format("woff2");
   font-display: swap;
   unicode-range: U+2E80-9FFF, U+F900-FAFF, U+FF00-FFEF, U+00B7, U+2014, U+2018-2019, U+201C-201D, U+2026;
 }
 
 @font-face {
   font-family: "YanKai";
-  src: url("./assets/fonts/yan-kaishu.woff2") format("woff2");
+  src: url("./assets/fonts/yan-kaishu.woff2?v=6") format("woff2");
   font-display: swap;
   unicode-range: U+2E80-9FFF, U+F900-FAFF, U+FF00-FFEF, U+00B7, U+2014, U+2018-2019, U+201C-201D, U+2026;
 }

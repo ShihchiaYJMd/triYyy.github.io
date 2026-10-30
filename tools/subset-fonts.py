@@ -4,6 +4,7 @@
     python3 tools/subset-fonts.py <字体目录>
 
 字体目录里放原始 ttf（不入库），文件名对应关系见 FONTS。
+跑完后把 styles.css 里字体 url 的 ?v= 和 html 里 styles.css?v= 一起加一，避免浏览器用旧缓存。
 """
 
 import sys
